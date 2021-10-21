@@ -14,11 +14,15 @@
     <body>
         <h1>Shopping List</h1>
         <form method="GET" action="ShoppingList">
-            <p>Hello, ${usernameAttribute} <a href="ShoppingList">Logout</a></p>
+            <p>Hello, ${sessionUsername} <a href="ShoppingList">Logout</a></p>
             <h4>List</h4>
             <label>Add item:</label>
-            <input type="text" name="item" value="">
-            <input type="s">
+            <input type="text" name="items" value=""> 
         </form>
+            <input type="submit" name="add" value="Add">
+            <input type="radio" name="item" value="">
+            <label>item goes here</label>
+            <br>
+            <input type="submit" name="delete" value="Delete">
     </body>
 </html>

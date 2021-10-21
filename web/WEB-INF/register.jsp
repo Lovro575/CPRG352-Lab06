@@ -13,10 +13,10 @@
     </head>
     <body>
         <h1>ShoppingList</h1>
-        <form method="POST" action="ShoppingList">
-            <label>Username:</label>
-            <input type="text" name="username" value="">
-            <input type="submit" name="register" value="Register">
-        </form>
+            <form method="POST" action="ShoppingList">
+                <label>Username:</label>
+                <input type="text" name="username" value="">
+                <input type="submit" name="register" value="Register">
+            </form>
         </body>
 </html>
