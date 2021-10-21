@@ -14,7 +14,7 @@ public class ShoppingListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {           
         
-        request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
     }
 
     @Override
@@ -33,23 +33,30 @@ public class ShoppingListServlet extends HttpServlet {
         
         for(String allItems : itemList) {
             session.setAttribute("itemsList", allItems);
-            if(action.equals("Add")) {
-                //request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
-                response.sendRedirect("/ShoppingList/ShoppingList");
-            } else if(action.equals("delete")) {
-                String itemToDelete = request.getParameter("pickItem");
-                itemList.remove(itemToDelete);
-                response.sendRedirect("/ShoppingList/ShoppingList");
+            //register page
+            switch (action) {
+                case "register":
+                    String username = request.getParameter("username");
+                    session.setAttribute("sessionUsername", username);
+                    request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+                    //response.sendRedirect("/ShoppingList/ShoppingList");
+                    break;
+                case "Add":
+                    request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+                    //response.sendRedirect("/ShoppingList/ShoppingList");
+                    break;
+                case "delete":
+                    String itemToDelete = request.getParameter("pickItem");
+                    itemList.remove(itemToDelete);
+                    request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);                    
+                    //response.sendRedirect("/ShoppingList/ShoppingList");
+                    break;
+                default:
+                    break;
             }
         }
         
-//        //register page
-//        if(action.equals("register")) {
-//            String username = request.getParameter("username");
-//            session.setAttribute("sessionUsername", username);
-//            request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
-//            //response.sendRedirect("/ShoppingList/ShoppingList");
-//        }
+
        
         
         
