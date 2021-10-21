@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +12,9 @@ public class ShoppingListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {           
         
-        HttpSession session = request.getSession();
-        
-        String items = request.getParameter("items");
-        
-        request.getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
     }
 
     @Override
@@ -27,10 +23,32 @@ public class ShoppingListServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        String username = request.getParameter("username");
-        session.setAttribute("sessionUsername", username);
-        request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+        String action = request.getParameter("action");
         
+//        //register page
+//        String username = request.getParameter("username");
+//        session.setAttribute("sessionUsername", username);
+//        request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+//        //response.sendRedirect("/ShoppingList/ShoppingList");
+        
+        
+        //shoppingList page
+        ArrayList<String> itemList = new ArrayList<>();
+        String items = request.getParameter("items");      
+        //String line = "<li><input type=\"radio\" name=\"pickItem\" value=\"${itemsList}\">${itemsList}</li>";
+        itemList.add(items);
+        
+        for(String allItems : itemList) {
+            session.setAttribute("itemsList", allItems);
+            if(action.equals("Add")) {
+                //request.getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request,response);
+                response.sendRedirect("/ShoppingList/ShoppingList");
+            }
+        }
+        
+        if(action.equals("delete")) {
+            
+        }
 
     }
 

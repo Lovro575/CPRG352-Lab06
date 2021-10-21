@@ -13,16 +13,21 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        <form method="GET" action="ShoppingList">
-            <p>Hello, ${sessionUsername} <a href="ShoppingList">Logout</a></p>
+         <p>Hello, ${sessionUsername} <a href="ShoppingList?action=logout">Logout</a></p>
+        <form method="POST" action="">
             <h4>List</h4>
             <label>Add item:</label>
-            <input type="text" name="items" value=""> 
+            <input type="text" name="items" value=""><input type="submit" value="Add Item"> 
+            <input type="hidden" name="action" value="Add">
         </form>
-            <input type="submit" name="add" value="Add">
-            <input type="radio" name="item" value="">
-            <label>item goes here</label>
-            <br>
+            
+        <form method="POST" action="">
+            <ul>
+                <li><input type="radio" name="pickItem" value="${itemsList}">${itemsList}</li>
+            </ul>
+
             <input type="submit" name="delete" value="Delete">
+            <input type="hidden" name="action" value="delete">
+        </form>
     </body>
 </html>

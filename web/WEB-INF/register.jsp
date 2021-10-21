@@ -15,8 +15,14 @@
         <h1>ShoppingList</h1>
             <form method="POST" action="ShoppingList">
                 <label>Username:</label>
-                <input type="text" name="username" value="">
-                <input type="submit" name="register" value="Register">
+                <input type="text" name="username">
+                <input type="hidden" name="action" value="register">
+                <br>
+                <input type="submit" value="Register">
+                
+<!--                <label>Username:</label>
+                <input type="hidden" name="action" value="">
+                <input type="submit" name="register" value="Register">-->
             </form>
         </body>
 </html>
