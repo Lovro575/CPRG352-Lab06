@@ -13,19 +13,25 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-         <p>Hello, ${sessionUsername} <a href="ShoppingList?action=logout">Logout</a></p>
+         <p>Hello, ${sessionUsername}</p>
+         <p><a href="ShoppingList?action=logout">Logout</a></p>
         <form method="POST" action="">
             <h4>List</h4>
             <label>Add item:</label>
             <input type="text" name="items" value=""><input type="submit" value="Add Item"> 
-            <input type="hidden" name="action" value="Add">
+            <input type="hidden" name="action" value="add">
         </form>
             
         <form method="POST" action="">
-            <ul>
-                <li><input type="radio" name="pickItem" value="${itemsList}">${itemsList}</li>
-            </ul>
 
+                <c:forEach items="${itemList}">
+                    <ul>
+                        <li>
+                            <input type="radio" name="itemsInList" value=''>${allItems}
+                        </li>
+                    </ul>
+            </c:forEach>
+                
             <input type="submit" name="delete" value="Delete">
             <input type="hidden" name="action" value="delete">
         </form>
